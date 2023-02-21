@@ -9,9 +9,9 @@ fetch('https://jsonplaceholder.typicode.com/posts')
         if (localStorage.getItem("key") === null) {
             setTimeout(() => {
                 root.innerHTML = parsedResult.map((elem) => {
-                    return `<div id=element${elem.id}></div> <h2> Titlul elementelor este: ${elem.title} </h2>
+                    return `<div id=element${elem.id}> <h2> Titlul elementelor este: ${elem.title} </h2>
                 <p> iar descrierea este: ${elem.body} </p>
-                <button id="deleteButton${elem.id}">Delete Post</button>`;
+                <button id="deleteButton${elem.id}">Delete Post</button> </div>`;
                 }).join("");
             }, 3000);
 
