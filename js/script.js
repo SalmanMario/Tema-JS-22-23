@@ -6,15 +6,31 @@ fetch('https://jsonplaceholder.typicode.com/posts')
         const parsedResult = JSON.parse(unparsedResult);
         const root = document.querySelector("#root");
 
-        root.innerHTML = parsedResult.map((elem) => {
-            return `<div id=element${elem.id}> <h2> Titlul elementelor este: ${elem.title} </h2>
+        if (localStorage.getItem("key") === null) {
+            setTimeout(() => {
+                root.innerHTML = parsedResult.map((elem) => {
+                    return `<div id=element${elem.id}></div> <h2> Titlul elementelor este: ${elem.title} </h2>
+                <p> iar descrierea este: ${elem.body} </p>
+                <button id="deleteButton${elem.id}">Delete Post</button>`;
+                }).join("");
+            }, 3000);
+
+        } else {
+            root.innerHTML = parsedResult.map((elem) => {
+                return `<div id=element${elem.id}> <h2> Titlul elementelor este: ${elem.title} </h2>
                 <p> iar descrierea este: ${elem.body} </p>
                 <button id="deleteButton${elem.id}">Delete Post</button> </div>`;
-        }).join("");
+            }).join("");
+        }
 
-        let values = [parsedResult];
-        localStorage.setItem("key", JSON.stringify(values));
-        JSON.parse(localStorage.getItem("key", values));
+        localStorage.setItem("key", JSON.stringify(parsedResult));
+        JSON.parse(localStorage.getItem("key", parsedResult));
+
+        // root.innerHTML = parsedResult.map((elem) => {
+        //     return `<div id=element${elem.id}> <h2> Titlul elementelor este: ${elem.title} </h2>
+        //         <p> iar descrierea este: ${elem.body} </p>
+        //         <button id="deleteButton${elem.id}">Delete Post</button> </div>`;
+        // }).join("");
 
         console.log(parsedResult);
 
