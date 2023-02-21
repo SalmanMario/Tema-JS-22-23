@@ -12,10 +12,9 @@ fetch('https://jsonplaceholder.typicode.com/posts')
                 <button id="deleteButton${elem.id}">Delete Post</button> </div>`;
         }).join("");
 
-        for (let i = 0; i <= parsedResult.length; i++) {
-            const value = i.toString();
-            localStorage.setItem(value, "key");
-        }
+        let values = [parsedResult];
+        localStorage.setItem("key", JSON.stringify(values));
+        JSON.parse(localStorage.getItem("key", values));
 
         console.log(parsedResult);
 
